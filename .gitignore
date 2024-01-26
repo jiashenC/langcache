@@ -25,6 +25,11 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+langcache-venv/*
+langcache/.DS_Store
+test/.DS_Store
+.DS_Store
+.vscode/*
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -50,6 +55,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+test/evadb_data/*
 
 # Translations
 *.mo

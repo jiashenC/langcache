@@ -1,6 +1,6 @@
 import os
 import evadb
-import openai
+from openai import OpenAI
 import string
 import random
 import multiprocessing as mp
@@ -17,6 +17,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 class Cache:
     def __init__(self, name=None, tune_frequency=5, tune_policy="precision"):
         self.cursor = evadb.connect().cursor()
+        self.client = OpenAI()
 
         # Setup needed functions.
         self.cursor.query(
@@ -72,7 +73,7 @@ class Cache:
             # LLM tuning.
             self.llm_msg[1]["content"] = f""" "{ret_key}" , "{key}" """
             response = (
-                openai.ChatCompletion.create(
+                self.client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=self.llm_msg,
                 )
